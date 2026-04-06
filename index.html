@@ -25,29 +25,7 @@
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-   <section style="padding: 30px 10px; background-color: #f4f4f4; border-top: 3px solid #cc1414; text-align: center; font-family: 'Source Sans 3', sans-serif;">
-    <h2 style="color: #cc1414; text-transform: uppercase; margin-bottom: 20px;">Secteurs d'intervention en Urgence - Pas-de-Calais</h2>
-    <p style="max-width: 800px; margin: 0 auto 20px auto; font-size: 1.1rem; color: #333;">
-        Urgence Nuisibles 62 intervient rapidement pour la <strong>dératisation</strong>, la <strong>désinsectisation</strong> et la <strong>destruction de nids de frelons</strong> dans les communes suivantes :
-    </p>
-   
-    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; max-width: 900px; margin: 0 auto; color: #1e1e1e;">
-        <span style="background: white; padding: 5px 15px; border-radius: 20px; border: 1px solid #ddd;">📍 Desvres (62240)</span>
-        <span style="background: white; padding: 5px 15px; border-radius: 20px; border: 1px solid #ddd;">📍 Fauquembergues (62560)</span>
-        <span style="background: white; padding: 5px 15px; border-radius: 20px; border: 1px solid #ddd;">📍 Lumbres (62380)</span>
-        <span style="background: white; padding: 5px 15px; border-radius: 20px; border: 1px solid #ddd;">📍 Saint-Omer (62500)</span>
-        <span style="background: white; padding: 5px 15px; border-radius: 20px; border: 1px solid #ddd;">📍 Boulogne-sur-Mer (62200)</span>
-        <span style="background: white; padding: 5px 15px; border-radius: 20px; border: 1px solid #ddd;">📍 Saint-Martin-Boulogne (62220)</span>
-        <span style="background: white; padding: 5px 15px; border-radius: 20px; border: 1px solid #ddd;">📍 Samer (62830)</span>
-        <span style="background: white; padding: 5px 15px; border-radius: 20px; border: 1px solid #ddd;">📍 Montreuil-sur-Mer (62170)</span>
-        <span style="background: white; padding: 5px 15px; border-radius: 20px; border: 1px solid #ddd;">📍 Licques (62850)</span>
-        <span style="background: white; padding: 5px 15px; border-radius: 20px; border: 1px solid #ddd;">📍 Neufchâtel-Hardelot (62152)</span>
-    </div>
-   
-    <p style="margin-top: 25px; font-weight: bold;">
-        🚗 Intervention sous 24h sur tout le secteur de la Côte d'Opale et de l'Audomarois.
-    </p>
-</section> body { font-family: 'Source Sans 3', sans-serif; color: var(--texte); background: var(--blanc); }
+    body { font-family: 'Source Sans 3', sans-serif; color: var(--texte); background: var(--blanc); }
     h1,h2,h3,h4 { font-family: 'Oswald', sans-serif; }
 
     /* NAV */
@@ -193,6 +171,72 @@
       color: var(--rouge);
     }
     .prestation-prix .ttc { font-size: 13px; color: #999; font-family: 'Source Sans 3', sans-serif; font-weight: 400; }
+
+    /* TARIFS COMPLETS */
+    .tarifs-bloc {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      margin-bottom: 30px;
+      border-top: 4px solid var(--rouge);
+    }
+    .tarifs-bloc-header {
+      background: var(--gris-fonce);
+      color: white;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .tarifs-ligne {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 13px 24px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .tarifs-ligne:last-child { border-bottom: none; }
+    .tarifs-ligne:hover { background: #fafafa; }
+    .tarifs-ligne-label { font-size: 15px; color: #333; flex: 1; }
+    .tarifs-ligne-sub { font-size: 12px; color: #999; margin-top: 2px; }
+    .tarifs-ligne-prix {
+      font-family: 'Oswald', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--noir);
+      white-space: nowrap;
+      margin-left: 16px;
+    }
+    .tarifs-ligne-prix.vert { color: #16a34a; }
+    .tarifs-ligne-prix.devis { font-size: 15px; color: #888; font-weight: 400; font-family: 'Source Sans 3', sans-serif; }
+    .tarifs-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 9px;
+      border-radius: 20px;
+      margin-left: 10px;
+      vertical-align: middle;
+    }
+    .tarifs-tag-pop { background: #dcfce7; color: #15803d; }
+    .tarifs-tag-rec { background: #dbeafe; color: #1d4ed8; }
+    .tarifs-garantie {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 6px;
+      padding: 12px 18px;
+      margin: 0 24px 20px;
+      font-size: 14px;
+      color: #15803d;
+      line-height: 1.5;
+    }
+    .tarifs-garantie strong { color: #14532d; }
 
     /* TARIFS DÉPLACEMENT */
     .tarifs-dep-grid {
@@ -375,7 +419,7 @@
         <div class="prestation-body">
           <h3>Dératisation</h3>
           <p>Élimination des rats, souris et autres rongeurs. Traitement adapté à la surface et au niveau d'infestation constaté sur place.</p>
-          <div class="prestation-prix">À partir de 60 € <span class="ttc">TTC hors déplacement</span></div>
+          <div class="prestation-prix">À partir de 75 € <span class="ttc">TTC hors déplacement</span></div>
         </div>
       </div>
 
@@ -384,7 +428,7 @@
         <div class="prestation-body">
           <h3>Guêpes &amp; Frelons</h3>
           <p>Destruction de nids de guêpes et frelons (y compris frelons asiatiques). Tarif fixe pour nids visibles jusqu'à 3 m de hauteur. Au-delà, nous contacter.</p>
-          <div class="prestation-prix">60 € <span class="ttc">TTC hors déplacement – nids ≤ 3 m</span></div>
+          <div class="prestation-prix">70 € <span class="ttc">TTC hors déplacement – nids ≤ 3 m</span></div>
         </div>
       </div>
 
@@ -428,31 +472,95 @@
   </div>
 </section>
 
-<!-- TARIFS DÉPLACEMENT -->
+<!-- TARIFS COMPLETS -->
 <section id="tarifs">
   <div class="container">
-    <div class="section-label">Transparence tarifaire</div>
-    <h2 class="section-title">Frais de <span>déplacement</span></h2>
-    <p class="section-desc">Nos frais de déplacement sont calculés depuis notre siège à Senlecques (62240), en fonction de la distance.</p>
+    <div class="section-label">🛠️ Tarifs transparents &amp; sans surprise</div>
+    <h2 class="section-title">Nos <span>tarifs</span></h2>
+    <p class="section-desc">Interventions 7j/7 sur le Boulonnais, l'Audomarois, le Pays d'Opale et le Haut Pays. Tous les tarifs sont TTC, déplacement en sus selon zone.</p>
+
+    <!-- GUÊPES & FRELONS -->
+    <div class="tarifs-bloc">
+      <div class="tarifs-bloc-header">
+        <span>🐝</span> Guêpes &amp; Frelons — Destruction de nids
+      </div>
+      <div class="tarifs-ligne">
+        <div>
+          <div class="tarifs-ligne-label">Nid accessible <span style="font-size:13px;color:#999;">(moins de 3 m)</span> <span class="tarifs-tag tarifs-tag-pop">Le + demandé</span></div>
+        </div>
+        <div class="tarifs-ligne-prix vert">70 € TTC</div>
+      </div>
+      <div class="tarifs-ligne">
+        <div>
+          <div class="tarifs-ligne-label">Nid en hauteur <span style="font-size:13px;color:#999;">(3 m à 6 m)</span></div>
+        </div>
+        <div class="tarifs-ligne-prix">90 € TTC</div>
+      </div>
+      <div class="tarifs-ligne">
+        <div>
+          <div class="tarifs-ligne-label">Grande hauteur ou accès difficile</div>
+        </div>
+        <div class="tarifs-ligne-prix devis">Sur devis</div>
+      </div>
+      <div class="tarifs-garantie">
+        ✅ <strong>Garantie de résultat</strong> — Si le nid est toujours actif après 48h, nous repassons gratuitement.
+      </div>
+    </div>
+
+    <!-- DÉRATISATION -->
+    <div class="tarifs-bloc">
+      <div class="tarifs-bloc-header">
+        <span>🐀</span> Dératisation — Rats, Souris, Mulots
+      </div>
+      <div class="tarifs-ligne">
+        <div>
+          <div class="tarifs-ligne-label">Appartement / Petit espace</div>
+        </div>
+        <div class="tarifs-ligne-prix">80 € TTC</div>
+      </div>
+      <div class="tarifs-ligne">
+        <div>
+          <div class="tarifs-ligne-label">Maison standard</div>
+        </div>
+        <div class="tarifs-ligne-prix">110 € TTC</div>
+      </div>
+      <div class="tarifs-ligne">
+        <div>
+          <div class="tarifs-ligne-label">Forfait Sérénité <span class="tarifs-tag tarifs-tag-rec">Recommandé</span></div>
+          <div class="tarifs-ligne-sub">2 passages inclus + suivi</div>
+        </div>
+        <div class="tarifs-ligne-prix vert">145 € TTC</div>
+      </div>
+      <div class="tarifs-ligne">
+        <div>
+          <div class="tarifs-ligne-label">Traitement extérieur / Jardin</div>
+        </div>
+        <div class="tarifs-ligne-prix">75 € TTC</div>
+      </div>
+    </div>
+
+    <!-- DÉPLACEMENT -->
+    <div class="section-label" style="margin-top:40px;">🚗 Frais de déplacement</div>
+    <p style="font-size:15px;color:#666;margin:8px 0 0;">Calculés depuis Senlecques (62240). Moins de 10 km : offert !</p>
     <div class="tarifs-dep-grid">
       <div class="tarif-dep-card" style="border-color:#22c55e;">
-        <div class="km">Jusqu'à 10 km</div>
+        <div class="km">Moins de 10 km</div>
         <div class="prix" style="color:#22c55e;">0 €</div>
-        <div class="ttc">TTC – Offert</div>
+        <div class="ttc">TTC – Offert 🎁</div>
       </div>
       <div class="tarif-dep-card" style="border-color:#3b82f6;">
         <div class="km">De 10 à 20 km</div>
-        <div class="prix" style="color:#3b82f6;">20 €</div>
+        <div class="prix" style="color:#3b82f6;">15 €</div>
         <div class="ttc">TTC</div>
       </div>
       <div class="tarif-dep-card" style="border-color:#f97316;">
         <div class="km">De 20 à 30 km</div>
-        <div class="prix" style="color:#f97316;">30 €</div>
+        <div class="prix" style="color:#f97316;">25 €</div>
         <div class="ttc">TTC</div>
       </div>
       <div class="tarif-dep-card" style="border-color:#ef4444;">
         <div class="km">De 30 à 40 km</div>
-        <div class="prix" style="color:#ef4444;">40 €</div>
+        <div class="prix" style="color:#ef4444;">35 €</div>
         <div class="ttc">TTC</div>
       </div>
     </div>
@@ -468,9 +576,9 @@
     <div id="map"></div>
     <div class="map-legend">
       <div class="map-legend-item"><div class="legend-dot" style="background:#22c55e;"></div> 0–10 km — 0 € TTC</div>
-      <div class="map-legend-item"><div class="legend-dot" style="background:#3b82f6;"></div> 10–20 km — 20 € TTC</div>
-      <div class="map-legend-item"><div class="legend-dot" style="background:#f97316;"></div> 20–30 km — 30 € TTC</div>
-      <div class="map-legend-item"><div class="legend-dot" style="background:#ef4444;"></div> 30–40 km — 40 € TTC</div>
+      <div class="map-legend-item"><div class="legend-dot" style="background:#3b82f6;"></div> 10–20 km — 15 € TTC</div>
+      <div class="map-legend-item"><div class="legend-dot" style="background:#f97316;"></div> 20–30 km — 25 € TTC</div>
+      <div class="map-legend-item"><div class="legend-dot" style="background:#ef4444;"></div> 30–40 km — 35 € TTC</div>
     </div>
   </div>
 </section>
@@ -608,9 +716,9 @@
     maxZoom: 17
   }).addTo(map);
   const zones = [
-    { radius: 40000, color: '#ef4444', label: '30–40 km', tarif: '40 € TTC', opacity: 0.10 },
-    { radius: 30000, color: '#f97316', label: '20–30 km', tarif: '30 € TTC', opacity: 0.13 },
-    { radius: 20000, color: '#3b82f6', label: '10–20 km', tarif: '20 € TTC', opacity: 0.18 },
+    { radius: 40000, color: '#ef4444', label: '30–40 km', tarif: '35 € TTC', opacity: 0.10 },
+    { radius: 30000, color: '#f97316', label: '20–30 km', tarif: '25 € TTC', opacity: 0.13 },
+    { radius: 20000, color: '#3b82f6', label: '10–20 km', tarif: '15 € TTC', opacity: 0.18 },
     { radius: 10000, color: '#22c55e', label: '0–10 km',  tarif: '0 € TTC – Offert', opacity: 0.25 },
   ];
   zones.forEach(z => {
