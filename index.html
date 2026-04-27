@@ -917,41 +917,120 @@
 <footer>
   © 2025 <span>Urgence Nuisibles 62</span> – Senlecques (62240) – <a href="tel:0608148892" style="color:#ffb800;text-decoration:none;">06 08 14 88 92</a>
 </footer>
-
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
   const CENTER = [50.6167, 1.8667];
-  const map = L.map('map', { scrollWheelZoom: false }).setView(CENTER, 9);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© <a href="https://www.openstreetmap.org">OpenStreetMap</a> contributors',
-    maxZoom: 17
-  }).addTo(map);
-  const zones = [
-    { radius: 40000, color: '#ef4444', label: '30–40 km', tarif: '35 € TTC', opacity: 0.10 },
-    { radius: 30000, color: '#f97316', label: '20–30 km', tarif: '25 € TTC', opacity: 0.13 },
-    { radius: 20000, color: '#3b82f6', label: '10–20 km', tarif: '15 € TTC', opacity: 0.18 },
-    { radius: 10000, color: '#22c55e', label: '0–10 km',  tarif: '0 € TTC – Offert', opacity: 0.25 },
-  ];
-  zones.forEach(z => {
-    L.circle(CENTER, {
-      radius: z.radius, color: z.color, fillColor: z.color,
-      fillOpacity: z.opacity, weight: 2.5, opacity: 0.85
-    }).addTo(map).bindPopup(
-      <div style="text-align:center;font-family:Arial;padding:4px 8px;">
-        <strong>Zone ${z.label}</strong><br/>
-        Déplacement : <strong>${z.tarif}</strong><br/>
-        <a href="tel:0608148892" style="color:#cc1414;font-weight:bold;text-decoration:none;">📞 06 08 14 88 92</a>
-      </div>
-    );
-  });
-  const icon = L.divIcon({
-    className: '',
-    html: <div style="background:#111;color:#ffb800;font-size:12px;font-weight:bold;padding:5px 10px;border-radius:6px;white-space:nowrap;box-shadow:0 2px 6px rgba(0,0,0,0.4);">📍 Senlecques</div>,
-    iconAnchor: [50, 12]
-  });
-  L.marker(CENTER, { icon }).addTo(map)
-    .bindPopup('<div style="text-align:center;font-family:Arial;"><strong>Senlecques (62240)</strong><br/>Siège – Urgence Nuisibles 62<br/><a href="tel:0608148892" style="color:#cc1414;font-weight:bold;">📞 06 08 14 88 92</a></div>');
 
+  const map = L.map('map', {
+    scrollWheelZoom: false
+  });
+
+  L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap',
+    maxZoom: 18
+  }).addTo(map);
+
+  const group = L.featureGroup();
+
+  // Zones avec animation
+  const zones = [
+    { radius: 40000, color: '#ef4444', label: '30–40 km', tarif: '35 € TTC', opacity: 0.08 },
+    { radius: 30000, color: '#f97316', label: '20–30 km', tarif: '25 € TTC', opacity: 0.10 },
+    { radius: 20000, color: '#3b82f6', label: '10–20 km', tarif: '15 € TTC', opacity: 0.12 },
+    { radius: 10000, color: '#22c55e', label: '0–10 km', tarif: 'Offert', opacity: 0.18 },
+  ];
+
+  zones.forEach((z, i) => {
+    setTimeout(() => {
+      const circle = L.circle(CENTER, {
+        radius: z.radius,
+        color: z.color,
+        fillColor: z.color,
+        fillOpacity: z.opacity,
+        weight: 2
+      }).addTo(map);
+
+      circle.bindPopup(`
+        <div style="text-align:center;">
+          <strong>Zone ${z.label}</strong><br/>
+          🚗 ${z.tarif}<br/><br/>
+          <a href="tel:0608148892" style="background:#cc1414;color:white;padding:6px 12px;border-radius:4px;text-decoration:none;">
+            📞 Appeler
+          </a>
+        </div>
+      `);
+
+      group.addLayer(circle);
+    }, i * 200);
+  });
+
+  // Marqueur entreprise
+  const customIcon = L.divIcon({
+    html: `
+      <div style="
+        background:#111;
+        color:#ffb800;
+        padding:8px 14px;
+        border-radius:8px;
+        font-weight:bold;
+        border:2px solid #ffb800;
+      ">
+        📍 Urgence Nuisibles 62
+      </div>
+    `,
+    className: '',
+    iconAnchor: [70, 20]
+  });
+
+  const marker = L.marker(CENTER, { icon: customIcon }).addTo(map);
+
+  marker.bindPopup(`
+    <div style="text-align:center;">
+      <strong>Intervention rapide</strong><br/>
+      Senlecques (62240)<br/><br/>
+
+      <a href="tel:0608148892" style="display:block;margin-bottom:8px;background:#cc1414;color:white;padding:8px;border-radius:5px;text-decoration:none;">
+        📞 Appeler
+      </a>
+
+      <a href="https://www.google.com/maps/dir/?api=1&destination=50.6167,1.8667" target="_blank"
+        style="display:block;background:#111;color:#ffb800;padding:8px;border-radius:5px;text-decoration:none;">
+        🧭 Itinéraire
+      </a>
+    </div>
+  `);
+
+  group.addLayer(marker);
+
+  // Zoom auto
+  setTimeout(() => {
+    map.fitBounds(group.getBounds(), { padding: [40, 40] });
+  }, 800);
+
+  // 📍 Géolocalisation client
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(position => {
+      const userPos = [position.coords.latitude, position.coords.longitude];
+
+      const userMarker = L.circleMarker(userPos, {
+        radius: 8,
+        color: '#2563eb',
+        fillColor: '#3b82f6',
+        fillOpacity: 0.9
+      }).addTo(map);
+
+      userMarker.bindPopup("📍 Vous êtes ici").openPopup();
+
+      // Ligne vers toi
+      L.polyline([userPos, CENTER], {
+        color: '#2563eb',
+        dashArray: '5,5'
+      }).addTo(map);
+
+    });
+  }
+
+</script>
   function envoyerForm() {
     const nom = document.getElementById('f-nom').value.trim();
     const tel = document.getElementById('f-tel').value.trim();
