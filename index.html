@@ -5,19 +5,35 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Urgence Nuisibles 62</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
 <style>
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: 'Source Sans 3', sans-serif;
   background: #111;
   color: #fff;
 }
 
 nav {
   background: #000;
-  padding: 15px;
+  padding: 15px 30px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+nav a {
+  color: #ccc;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.nav-tel {
+  background: #cc1414;
+  padding: 8px 15px;
+  border-radius: 4px;
 }
 
 .hero {
@@ -26,7 +42,8 @@ nav {
 }
 
 .hero h1 {
-  font-size: 40px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 50px;
 }
 
 .hero span {
@@ -36,44 +53,82 @@ nav {
 .btn {
   display: inline-block;
   background: #cc1414;
-  color: white;
   padding: 15px 30px;
+  margin-top: 20px;
   border-radius: 5px;
   text-decoration: none;
-  margin-top: 20px;
+  color: white;
 }
 
 section {
   padding: 50px 20px;
-  max-width: 900px;
+  max-width: 1000px;
   margin: auto;
+}
+
+.card {
+  background: #1e1e1e;
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: 6px;
 }
 
 #map {
   height: 400px;
-  background: #222;
+  margin-top: 20px;
+  border-radius: 6px;
 }
 </style>
-
 </head>
 
 <body>
 
 <nav>
-  <div>Urgence Nuisibles 62</div>
-  <div>📞 06 08 14 88 92</div>
+  <strong>Urgence Nuisibles 62</strong>
+  <div>
+    <a href="#">Prestations</a>
+    <a href="#">Tarifs</a>
+    <a href="#">Zones</a>
+    <a href="#">Contact</a>
+    <a href="tel:0608148892" class="nav-tel">📞 06 08 14 88 92</a>
+  </div>
 </nav>
 
 <div class="hero">
-  <h1>NUISIBLES ?<br><span>ON S'EN OCCUPE</span></h1>
-  <p>Dératisation, désinsectisation, guêpes, frelons…</p>
-  <a href="tel:0608148892" class="btn">📞 Appeler</a>
+  <h1>NUISIBLES ?<br><span>ON S'EN OCCUPE.</span></h1>
+  <p>Dératisation, désinsectisation, guêpes, frelons… Intervention rapide dans le Pas-de-Calais.</p>
+  <a href="tel:0608148892" class="btn">📞 Appeler maintenant</a>
 </div>
+
+<section>
+  <h2>Nos services</h2>
+
+  <div class="card">🐀 Dératisation</div>
+  <div class="card">🐝 Guêpes & Frelons</div>
+  <div class="card">🪳 Désinsectisation</div>
+  <div class="card">🪤 Piégeage</div>
+
+</section>
 
 <section>
   <h2>Zone d’intervention</h2>
   <div id="map"></div>
 </section>
+
+<footer style="text-align:center;padding:20px;background:#000;">
+  © 2025 Urgence Nuisibles 62 – 06 08 14 88 92
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const map = L.map('map').setView([50.6167, 1.8667], 10);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+L.marker([50.6167, 1.8667]).addTo(map)
+.bindPopup("Senlecques - Intervention rapide")
+.openPopup();
+</script>
 
 </body>
 </html>
