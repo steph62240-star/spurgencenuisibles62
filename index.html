@@ -919,5 +919,20 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('f-msg').value = '';
   }
 </script>
-</body>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+  const map = L.map('map').setView([50.6167, 1.8667], 10);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap'
+  }).addTo(map);
+
+  const marker = L.marker([50.6167, 1.8667]).addTo(map);
+
+  marker.bindPopup(`
+    <strong>SP Urgence Nuisibles 62</strong><br>
+    Senlecques (62240)<br><br>
+    <a href="tel:0608148892">📞 Appeler</a>
+  `);
+</script></body>
 </html>
